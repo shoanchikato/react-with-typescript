@@ -10,7 +10,7 @@ export const ListPost
     = ({ selectPost, state: { posts, isLoading } }: ListPostProps) => (
         <div>
             {isLoading ?
-                <h1>Loading..</h1>
+                <h1>Loading</h1>
                 :
                 posts.map((post: Post) => (
                     <Fragment key={post.id}>

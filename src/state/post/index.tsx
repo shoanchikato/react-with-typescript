@@ -1,4 +1,4 @@
-import React, { Dispatch, useReducer } from "react"
+import React, { Dispatch, ReactElement, ReactNode, useReducer } from "react"
 import { PostActions, PostAction, PostState } from "./model"
 
 const initialState: PostState = {
@@ -49,11 +49,11 @@ const reducer = (state: PostState, action: PostActions) => {
 
 type PostContextProps = { state: PostState, dispatch: Dispatch<PostActions> }
 
-type PostProviderType = (props: { children: React.ComponentType }) => React.ReactElement
+type PostProviderType = (props: { children?: ReactNode; }, context?: any) => ReactElement<any, any> | null
 
 const PostContext = React.createContext<PostContextProps>({state: initialState, dispatch: initialDispatch})
 
-const PostProvider: PostProviderType = (props: { children: React.ComponentType }) => {
+const PostProvider: PostProviderType = (props: { children?: ReactNode }) => {
     
     const [state, dispatch] = useReducer(reducer, initialState)
 

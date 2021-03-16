@@ -1,4 +1,4 @@
-import React, { Dispatch, useReducer } from "react"
+import React, { Dispatch, ReactElement, ReactNode, useReducer } from "react"
 import { UserActions, UserAction, UserState } from "./model"
 
 const initialState: UserState = {
@@ -49,11 +49,11 @@ const reducer = (state: UserState, action: UserActions) => {
 
 type UserContextProps = { state: UserState, dispatch: Dispatch<UserActions> }
 
-type UserProviderType = (props: { children: React.ComponentType }) => React.ReactElement
+type UserProviderType = (props: { children?: ReactNode; }, context?: any) => ReactElement<any, any> | null
 
 const UserContext = React.createContext<UserContextProps>({ state: initialState, dispatch: initialDispatch })
 
-const UserProvider: UserProviderType = (props: { children: React.ComponentType }) => {
+const UserProvider: UserProviderType = (props: { children?: ReactNode }) => {
 
     const [state, dispatch] = useReducer(reducer, initialState)
 

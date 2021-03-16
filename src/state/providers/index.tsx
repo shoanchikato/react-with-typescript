@@ -1,5 +1,4 @@
 import React, { PropsWithChildren } from 'react'
-import { PostProvider } from '../post'
 import { UserProvider } from '../user'
 
 const ContextProviderComposer
@@ -10,8 +9,7 @@ const ContextProviderComposer
 
 const Provider = (props: PropsWithChildren<any>, ...rest: PropsWithChildren<any>) => (
     <ContextProviderComposer contextProviders={[
-        <PostProvider key={0} children={rest} />,
-        <UserProvider key={1} children={rest} />,
+        // <UserProvider key={0} children={rest} />,
     ]}>
         {props.children}
     </ContextProviderComposer>

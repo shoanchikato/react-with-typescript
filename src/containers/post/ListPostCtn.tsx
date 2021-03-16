@@ -1,5 +1,5 @@
 import { useContext, useEffect } from "react"
-import { useHistory } from "react-router"
+import { useHistory, useRouteMatch } from "react-router"
 import { ListPost } from "../../components/post/ListPost"
 import { PostContext } from "../../state/post"
 import { useFetchPosts } from "../../state/post/hooks"
@@ -9,12 +9,12 @@ export const ListPostCtn = () => {
     const { state, dispatch } = useContext(PostContext)
     const fetchPosts = useFetchPosts()
     const history = useHistory()
+    const { url } = useRouteMatch()
 
     useEffect(fetchPosts, [])
-    
     const selectPost = (post: Post) => {
         dispatch({ type: PostAction.SELECT, payload: post })
-        history.push(`posts/${post.id}`)
+        history.push(`${url}/${post.id}`)
     }
 
     return (
